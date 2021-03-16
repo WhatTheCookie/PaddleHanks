@@ -15,16 +15,9 @@ namespace PaddleHanks.GameController.Script
             DontDestroyOnLoad(this);
         }
 
-        // Start is called before the first frame update
-        void Start()
+        public void SetState(GameState gameState)
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            StartCoroutine(gameState.Start());
         }
     }
 }
