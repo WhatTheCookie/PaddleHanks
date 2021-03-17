@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using PaddleHanks.Attributes.Script;
+﻿using System.Collections;
 
 namespace PaddleHanks.GameController.Script
 {
@@ -11,11 +9,12 @@ namespace PaddleHanks.GameController.Script
     /// </summary>
     public abstract class GameState
     {
-        private StateMachine _stateMachine;
-        
-        protected GameState(StateMachine stateMachine)
+        protected readonly StateMachine StateMachine;
+        protected IslandUI UI;
+
+        protected GameState(StateMachine stateMachine, IslandUI ui)
         {
-            _stateMachine = stateMachine;
+            StateMachine = stateMachine;
         }
 
         /// <summary>
@@ -25,7 +24,7 @@ namespace PaddleHanks.GameController.Script
         /// <returns></returns>
         protected IEnumerator ChangeState(GameState gameState)
         {
-            _stateMachine.SetState(gameState);
+            StateMachine.SetState(gameState);
             yield break;
         }
 
@@ -50,23 +49,11 @@ namespace PaddleHanks.GameController.Script
 
     public class IslandSurvival : GameState
     {
-        public IslandSurvival(StateMachine stateMachine) : base(stateMachine)
+        public IslandSurvival(StateMachine stateMachine, IslandUI ui) : base(stateMachine, ui)
         {
         }
         
         
-    }
-
-    public class IslandSurvivalFirst : GameState
-    {
-        public IslandSurvivalFirst(StateMachine stateMachine) : base(stateMachine)
-        {
-        }
-
-        public override IEnumerator Start()
-        {
-            //GameValues.Instance.attributes = new PlayerAttributes();
-            yield break;
-        }
+        
     }
 }

@@ -7,7 +7,8 @@
     /// </summary>
     public class PlayerAttribute
     {
-        private float _bottomValueRange, _topValueRange, _attribute;
+        private readonly float _topValueRange;
+        private float _attribute;
 
         public PlayerAttribute(float topValueRange, float attributeValue)
         {
@@ -15,6 +16,9 @@
             Attribute = attributeValue;
         }
 
+        /// <summary>
+        /// If the attribute is set to go over the topvalue range don't let it
+        /// </summary>
         public float Attribute
         {
             get => _attribute;
